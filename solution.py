@@ -115,5 +115,5 @@ def ping(host, timeout=1):
 		time.sleep(1)# one second
 	return delay
 	
-ping("google.com")
+ping("google.co.il")
 
