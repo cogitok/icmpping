@@ -17,11 +17,11 @@ def checksum(string):
 		thisVal = ord(string[count+1]) * 256 + ord(string[count]) 
 		csum = csum + thisVal 
 		csum = csum & 0xffffffff  
-		count = count + 2
+		count += 2
 	
 	if countTo < len(string):
-		csum = csum + ord(string[len(string) - 1])
-		csum = csum & 0xffffffff 
+		csum += (string[len(string) - 1])
+		csum &= 0xffffffff 
 	
 	csum = (csum >> 16) + (csum & 0xffff)
 	csum = csum + (csum >> 16)
