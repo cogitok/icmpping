@@ -103,29 +103,19 @@ def doOnePing(destAddr, timeout):
 	return delay
 	
 def ping(host, timeout=1):
-	# timeout=1 means: If one second goes by without a reply from the server,
-	# the client assumes that either the client's ping or the server's pong is lost
-	
-	packet_min = float('+inf')
-	packet_max = float('-inf')
-	packet_avg = 0
-	stdev_var = 0
-	stdev = 0
-	dest = gethostbyname(host)
-	print("Pinging " + dest + " using Python:")
-	print("")
-	#vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)),str(round(packet_max, 2)), str(round(stdev(stdev_var),2))]
-
-	# Send ping requests to a server separated by approximately one second
-	#while True:
-
-	
-	for i in range(0, 4):  
-		delay = doOnePing(dest, timeout)
-		vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)),str(round(packet_max, 2)), str(round(stdev(stdev_var),2))]
-		print(delay)
-		time.sleep(1)# one second
-	return vars
+    def ping(host, timeout=1):
+    #timeout=1 means: If one second goes by without a reply from the server,
+    dest = socket.gethostbyname(host)
+    print "Pinging " + dest + " using Python:"
+    print ""
+    #Send ping requests to a server separated by approximately one second
+    while 1 :
+        delay = doOnePing(dest, timeout)
+        print "RTT:",delay
+        print "maxRTT:", (max(timeRTT) if len(timeRTT) > 0 else 0), "\tminRTT:", (min(timeRTT) if len(timeRTT) > 0 else 0), "\naverageRTT:", float(sum(timeRTT)/len(timeRTT) if len(timeRTT) > 0 else float("nan"))
+        print "Package Lose Rate:", ((packageSent - packageRev)/packageSent if packageRev > 0 else 0)
+        time.sleep(1)# one second
+    return delay
 	
 if __name__ == '__main__':
     ping ("google.co.il")
