@@ -113,7 +113,8 @@ def ping(host, timeout=1):
 		delay = doOnePing(dest, timeout)
 		print(delay)
 		time.sleep(1)# one second
-	return delay
+	return vars
 	
-ping("google.co.il")
+if __name__ == '__main__':
+	ping("google.co.il")
 
