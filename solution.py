@@ -108,7 +108,7 @@ def ping(host, timeout=1):
    packet_min = 0
    packet_max = 0
    packet_avg = 0
-   stdev_var = 0 
+   stdev = 0 
 	
    print("Pinging " + dest + " using Python:")
    print("")
