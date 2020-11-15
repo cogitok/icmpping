@@ -112,7 +112,7 @@ def ping(host, timeout=1):
     #timeout=1 means: If one second goes by without a reply from the server,
     #the client assumes that either the client's ping or the server's pong is lost
     dest = socket.gethostbyname(host)
-    print "Pinging " + dest + " using Python:"
+    print ("Pinging " + dest + " using Python:")
     #Send ping requests to a server separated by approximately one second
     try:
         while True:
@@ -121,10 +121,10 @@ def ping(host, timeout=1):
             time.sleep(1)
     except KeyboardInterrupt:
         if cnt != 0:
-            print '--- {} ping statistics ---'.format(host)
-            print '{} packets transmitted, {} packets received, {:.1f}% packet loss'.format(cnt, rtt_cnt, 100.0 - rtt_cnt * 100.0 / cnt)
+            print ('--- {} ping statistics ---'.format(host))
+            print ('{} packets transmitted, {} packets received, {:.1f}% packet loss'.format(cnt, rtt_cnt, 100.0 - rtt_cnt * 100.0 / cnt))
             if rtt_cnt != 0:
-                print 'round-trip min/avg/max {:.3f}/{:.3f}/{:.3f} ms'.format(rtt_min, rtt_sum / rtt_cnt, rtt_max)
+                print ('round-trip min/avg/max {:.3f}/{:.3f}/{:.3f} ms'.format(rtt_min, rtt_sum / rtt_cnt, rtt_max))
 
 
 	
