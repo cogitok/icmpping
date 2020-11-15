@@ -109,7 +109,7 @@ def ping(host, timeout=1):
 	packet_min = float('+inf')
 	packet_max = float('-inf')
 	packet_avg = 0
-	stdev = 0
+	stdev_var = 0
 	cnt = 0
 	dest = gethostbyname(host)
 	print("Pinging " + dest + " using Python:")
