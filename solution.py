@@ -103,28 +103,25 @@ def doOnePing(destAddr, timeout):
 	return delay
 	
 def ping(host, timeout=1):
-    global rtt_min, rtt_max, rtt_sum, rtt_cnt
-    rtt_min = float('+inf')
-    rtt_max = float('-inf')
-    rtt_sum = 0
-    rtt_cnt = 0
-    cnt = 0
-    #timeout=1 means: If one second goes by without a reply from the server,
-    #the client assumes that either the client's ping or the server's pong is lost
-    dest = socket.gethostbyname(host)
-    print ("Pinging " + dest + " using Python:")
-    #Send ping requests to a server separated by approximately one second
-    try:
-        while True:
-            cnt += 1
-            print doOnePing(dest, timeout)
-            time.sleep(1)
-    except KeyboardInterrupt:
-        if cnt != 0:
-            print ('--- {} ping statistics ---'.format(host))
-            print ('{} packets transmitted, {} packets received, {:.1f}% packet loss'.format(cnt, rtt_cnt, 100.0 - rtt_cnt * 100.0 / cnt))
-            if rtt_cnt != 0:
-                print ('round-trip min/avg/max {:.3f}/{:.3f}/{:.3f} ms'.format(rtt_min, rtt_sum / rtt_cnt, rtt_max))
+     # timeout=1 means: If one second goes by without a reply from the server,      # the client assumes that either the client's ping or the server's pong is lost
+   dest = gethostbyname(host)
+   packet_min = 0
+   packet_max = 0
+   packet_avg = 0
+   stdev_var = 0 
+	
+   print("Pinging " + dest + " using Python:")
+   print("")
+   # Calculate vars values and return them
+   vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
+   # Send ping requests to a server separated by approximately one second
+   for i in range(0,4):
+       delay = doOnePing(dest, timeout)
+       print(delay)
+       time.sleep(1)  # one second
+
+   return vars
+
 
 
 	
